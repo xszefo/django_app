@@ -81,7 +81,7 @@ def updateOrder(request, pk):
             'form': form,
             }
 
-    return render(request, 'accounts/order_form.html', context)
+    return render(request, 'accounts/update_order.html', context)
 
 def deleteOrder(request, pk):
     order = Order.objects.get(id=pk)
