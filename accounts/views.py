@@ -51,7 +51,6 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
 
-@login_required(login_url='login')
 def home(request):
     orders = Order.objects.all()
     customers = Customer.objects.all()
@@ -71,7 +70,6 @@ def home(request):
             }
     return render(request, 'accounts/dashboard.html', context)
 
-@login_required(login_url='login')
 def products(request):
     products = Product.objects.all()
     context = {}
@@ -79,7 +77,6 @@ def products(request):
     context['products'] = products
     return render(request, 'accounts/products.html', context)
 
-@login_required(login_url='login')
 def customer(request, pk=None):
     customer = get_object_or_404(Customer, pk=pk)
     orders = customer.order_set.all()
@@ -96,7 +93,6 @@ def customer(request, pk=None):
             }
     return render(request, 'accounts/customer.html', context)
 
-@login_required(login_url='login')
 def createOrder(request, pk):
     context = {}
     
@@ -116,7 +112,6 @@ def createOrder(request, pk):
     return render(request, 'accounts/order_form.html', context)
 
 
-@login_required(login_url='login')
 def updateOrder(request, pk):
     order = Order.objects.get(id=pk)
     form = OrderForm(instance=order)
@@ -133,7 +128,6 @@ def updateOrder(request, pk):
 
     return render(request, 'accounts/update_order.html', context)
 
-@login_required(login_url='login')
 def deleteOrder(request, pk):
     order = Order.objects.get(id=pk)
 
